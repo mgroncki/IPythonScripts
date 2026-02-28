@@ -1,0 +1,899 @@
+[
+  {
+    "name": "2008 Global Financial Crisis",
+    "period": "Sep 2008 – Mar 2009",
+    "description": "Collapse of Lehman Brothers triggered a global credit crunch, massive equity sell-off, flight to quality into US Treasuries, and extreme volatility across all asset classes.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.02,
+          "2Y": -0.025,
+          "5Y": -0.015,
+          "10Y": -0.01,
+          "30Y": -0.005
+        },
+        "USD": {
+          "1Y": -0.03,
+          "2Y": -0.03,
+          "5Y": -0.02,
+          "10Y": -0.015,
+          "30Y": -0.01
+        }
+      },
+      "fx": { "EURUSD": -0.1 },
+      "equity": {
+        "EUR": -0.45,
+        "USD": -0.4
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.015,
+          "2Y": 0.02,
+          "3Y": 0.025,
+          "5Y": 0.03,
+          "10Y": 0.035
+        },
+        "USD": { "1Y": 0.02, "2Y": 0.025, "3Y": 0.03, "5Y": 0.035, "10Y": 0.04 }
+      }
+    }
+  },
+  {
+    "name": "2010-2012 European Sovereign Debt Crisis",
+    "period": "2010 – 2012",
+    "description": "Greek debt crisis spread to Ireland, Portugal, Spain, and Italy. EUR weakened significantly, European equities fell, and EUR rates were cut while peripheral spreads blew out.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.01,
+          "2Y": -0.012,
+          "5Y": -0.008,
+          "10Y": -0.005,
+          "30Y": -0.003
+        },
+        "USD": {
+          "1Y": -0.008,
+          "2Y": -0.01,
+          "5Y": -0.012,
+          "10Y": -0.015,
+          "30Y": -0.01
+        }
+      },
+      "fx": { "EURUSD": -0.15 },
+      "equity": {
+        "EUR": -0.3,
+        "USD": -0.12
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.012,
+          "2Y": 0.018,
+          "3Y": 0.022,
+          "5Y": 0.025,
+          "10Y": 0.02
+        },
+        "USD": {
+          "1Y": 0.005,
+          "2Y": 0.006,
+          "3Y": 0.007,
+          "5Y": 0.008,
+          "10Y": 0.008
+        },
+        "Sovereign": {
+          "1Y": 0.03,
+          "2Y": 0.04,
+          "3Y": 0.05,
+          "5Y": 0.06,
+          "10Y": 0.05
+        }
+      }
+    }
+  },
+  {
+    "name": "2015 China Devaluation / EM Shock",
+    "period": "Aug – Sep 2015",
+    "description": "PBoC surprised markets with a CNY devaluation, triggering a global equity sell-off and flight to safety.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.002,
+          "2Y": -0.003,
+          "5Y": -0.005,
+          "10Y": -0.008,
+          "30Y": -0.006
+        },
+        "USD": {
+          "1Y": -0.005,
+          "2Y": -0.008,
+          "5Y": -0.012,
+          "10Y": -0.015,
+          "30Y": -0.01
+        }
+      },
+      "fx": { "EURUSD": 0.04 },
+      "equity": {
+        "EUR": -0.18,
+        "USD": -0.12
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.003,
+          "2Y": 0.004,
+          "3Y": 0.005,
+          "5Y": 0.005,
+          "10Y": 0.004
+        },
+        "USD": {
+          "1Y": 0.002,
+          "2Y": 0.003,
+          "3Y": 0.004,
+          "5Y": 0.004,
+          "10Y": 0.003
+        }
+      }
+    }
+  },
+  {
+    "name": "2020 COVID-19 Crash",
+    "period": "Feb – Mar 2020",
+    "description": "Global pandemic caused the fastest equity bear market in history, massive rate cuts, and a short-lived USD liquidity squeeze.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.003,
+          "2Y": -0.005,
+          "5Y": -0.007,
+          "10Y": -0.008,
+          "30Y": -0.005
+        },
+        "USD": {
+          "1Y": -0.015,
+          "2Y": -0.015,
+          "5Y": -0.012,
+          "10Y": -0.01,
+          "30Y": -0.008
+        }
+      },
+      "fx": { "EURUSD": -0.03 },
+      "equity": {
+        "EUR": -0.35,
+        "USD": -0.34
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.012,
+          "2Y": 0.018,
+          "3Y": 0.022,
+          "5Y": 0.025,
+          "10Y": 0.02
+        },
+        "USD": {
+          "1Y": 0.015,
+          "2Y": 0.02,
+          "3Y": 0.025,
+          "5Y": 0.028,
+          "10Y": 0.022
+        }
+      }
+    }
+  },
+  {
+    "name": "2022 Russia-Ukraine / Energy Crisis",
+    "period": "Feb – Oct 2022",
+    "description": "Russian invasion of Ukraine caused energy supply shock in Europe, EUR fell to parity with USD, European equities dropped, and central banks hiked rates aggressively to fight inflation.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.025,
+          "2Y": 0.03,
+          "5Y": 0.025,
+          "10Y": 0.02,
+          "30Y": 0.015
+        },
+        "USD": {
+          "1Y": 0.03,
+          "2Y": 0.035,
+          "5Y": 0.025,
+          "10Y": 0.018,
+          "30Y": 0.012
+        }
+      },
+      "fx": { "EURUSD": -0.15 },
+      "equity": {
+        "EUR": -0.22,
+        "USD": -0.25
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.01,
+          "2Y": 0.014,
+          "3Y": 0.016,
+          "5Y": 0.018,
+          "10Y": 0.015
+        },
+        "USD": {
+          "1Y": 0.004,
+          "2Y": 0.006,
+          "3Y": 0.007,
+          "5Y": 0.008,
+          "10Y": 0.007
+        }
+      }
+    }
+  },
+  {
+    "name": "1992 ERM Crisis / Black Wednesday",
+    "period": "Sep 1992",
+    "description": "Speculative attack on the British pound and Italian lira forced exits from the ERM. European currencies fell sharply against the DEM. EUR proxy (DEM) strengthened vs USD.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.01,
+          "2Y": 0.008,
+          "5Y": 0.005,
+          "10Y": 0.003,
+          "30Y": 0.002
+        },
+        "USD": {
+          "1Y": -0.003,
+          "2Y": -0.003,
+          "5Y": -0.002,
+          "10Y": -0.002,
+          "30Y": -0.001
+        }
+      },
+      "fx": { "EURUSD": 0.05 },
+      "equity": {
+        "EUR": -0.1,
+        "USD": -0.03
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.002,
+          "2Y": 0.003,
+          "3Y": 0.004,
+          "5Y": 0.004,
+          "10Y": 0.003
+        },
+        "USD": {
+          "1Y": 0.001,
+          "2Y": 0.002,
+          "3Y": 0.002,
+          "5Y": 0.002,
+          "10Y": 0.002
+        }
+      }
+    }
+  },
+  {
+    "name": "2001 Dot-com Bust",
+    "period": "Mar 2000 – Oct 2002",
+    "description": "Bursting of the tech bubble led to a prolonged equity bear market, recession fears, and aggressive Fed rate cuts.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.015,
+          "2Y": -0.012,
+          "5Y": -0.008,
+          "10Y": -0.005,
+          "30Y": -0.003
+        },
+        "USD": {
+          "1Y": -0.04,
+          "2Y": -0.035,
+          "5Y": -0.025,
+          "10Y": -0.015,
+          "30Y": -0.01
+        }
+      },
+      "fx": { "EURUSD": 0.08 },
+      "equity": {
+        "EUR": -0.55,
+        "USD": -0.45,
+        "Tech": -0.75
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.005,
+          "2Y": 0.007,
+          "3Y": 0.008,
+          "5Y": 0.009,
+          "10Y": 0.008
+        },
+        "USD": {
+          "1Y": 0.008,
+          "2Y": 0.01,
+          "3Y": 0.012,
+          "5Y": 0.014,
+          "10Y": 0.012
+        }
+      }
+    }
+  },
+  {
+    "name": "1997 Asian Financial Crisis",
+    "period": "Jul 1997 – Jan 1998",
+    "description": "Currency collapses across SE Asia (THB, KRW, IDR) spread contagion to global markets. Safe-haven flows benefited USD and Treasuries.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.003,
+          "2Y": -0.004,
+          "5Y": -0.005,
+          "10Y": -0.005,
+          "30Y": -0.003
+        },
+        "USD": {
+          "1Y": -0.005,
+          "2Y": -0.008,
+          "5Y": -0.01,
+          "10Y": -0.01,
+          "30Y": -0.008
+        }
+      },
+      "fx": { "EURUSD": -0.06 },
+      "equity": {
+        "EUR": -0.15,
+        "USD": -0.08
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.002,
+          "2Y": 0.003,
+          "3Y": 0.004,
+          "5Y": 0.005,
+          "10Y": 0.004
+        },
+        "USD": {
+          "1Y": 0.003,
+          "2Y": 0.005,
+          "3Y": 0.006,
+          "5Y": 0.007,
+          "10Y": 0.006
+        }
+      }
+    }
+  },
+  {
+    "name": "2023 US Regional Banking Crisis",
+    "period": "Mar 2023",
+    "description": "Collapse of SVB and Signature Bank raised fears of a wider banking crisis. Rates fell sharply as markets priced in Fed cuts; equities initially fell but recovered quickly.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.005,
+          "2Y": -0.008,
+          "5Y": -0.01,
+          "10Y": -0.008,
+          "30Y": -0.005
+        },
+        "USD": {
+          "1Y": -0.01,
+          "2Y": -0.015,
+          "5Y": -0.018,
+          "10Y": -0.015,
+          "30Y": -0.01
+        }
+      },
+      "fx": { "EURUSD": 0.03 },
+      "equity": {
+        "EUR": -0.08,
+        "USD": -0.05
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.003,
+          "2Y": 0.004,
+          "3Y": 0.005,
+          "5Y": 0.005,
+          "10Y": 0.004
+        },
+        "USD": {
+          "1Y": 0.006,
+          "2Y": 0.008,
+          "3Y": 0.01,
+          "5Y": 0.012,
+          "10Y": 0.01
+        },
+        "SeniorUnsecured": {
+          "1Y": 0.012,
+          "2Y": 0.016,
+          "3Y": 0.02,
+          "5Y": 0.024,
+          "10Y": 0.02
+        }
+      }
+    }
+  },
+  {
+    "name": "1998 LTCM / Russian Default",
+    "period": "Aug – Oct 1998",
+    "description": "Russian debt default and LTCM collapse caused a global liquidity crisis. Massive flight to quality into US Treasuries, equity sell-off, and credit spreads blew out.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.005,
+          "2Y": -0.008,
+          "5Y": -0.01,
+          "10Y": -0.01,
+          "30Y": -0.008
+        },
+        "USD": {
+          "1Y": -0.008,
+          "2Y": -0.012,
+          "5Y": -0.015,
+          "10Y": -0.015,
+          "30Y": -0.012
+        }
+      },
+      "fx": { "EURUSD": 0.06 },
+      "equity": {
+        "EUR": -0.3,
+        "USD": -0.2
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.008,
+          "2Y": 0.012,
+          "3Y": 0.015,
+          "5Y": 0.018,
+          "10Y": 0.015
+        },
+        "USD": {
+          "1Y": 0.012,
+          "2Y": 0.016,
+          "3Y": 0.02,
+          "5Y": 0.024,
+          "10Y": 0.02
+        },
+        "Sovereign": {
+          "1Y": 0.02,
+          "2Y": 0.03,
+          "3Y": 0.04,
+          "5Y": 0.05,
+          "10Y": 0.04
+        }
+      }
+    }
+  },
+  {
+    "name": "2011 US Debt-Ceiling Crisis / S&P Downgrade",
+    "period": "Jul – Aug 2011",
+    "description": "US debt-ceiling standoff and first-ever S&P downgrade of US sovereign debt. Paradoxically Treasuries rallied on flight to quality, equities sold off.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.003,
+          "2Y": -0.005,
+          "5Y": -0.008,
+          "10Y": -0.01,
+          "30Y": -0.008
+        },
+        "USD": {
+          "1Y": -0.005,
+          "2Y": -0.008,
+          "5Y": -0.012,
+          "10Y": -0.012,
+          "30Y": -0.01
+        }
+      },
+      "fx": { "EURUSD": -0.05 },
+      "equity": {
+        "EUR": -0.25,
+        "USD": -0.17
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.004,
+          "2Y": 0.006,
+          "3Y": 0.008,
+          "5Y": 0.01,
+          "10Y": 0.008
+        },
+        "USD": {
+          "1Y": 0.005,
+          "2Y": 0.007,
+          "3Y": 0.009,
+          "5Y": 0.01,
+          "10Y": 0.008
+        }
+      }
+    }
+  },
+  {
+    "name": "2018 Volmageddon / Feb Sell-off",
+    "period": "Feb 2018",
+    "description": "A sharp spike in US wage growth triggered fears of faster Fed tightening. VIX exploded, inverse-vol products blew up, equities fell sharply.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.002,
+          "2Y": 0.003,
+          "5Y": 0.005,
+          "10Y": 0.005,
+          "30Y": 0.003
+        },
+        "USD": {
+          "1Y": 0.005,
+          "2Y": 0.008,
+          "5Y": 0.01,
+          "10Y": 0.008,
+          "30Y": 0.005
+        }
+      },
+      "fx": { "EURUSD": 0.02 },
+      "equity": {
+        "EUR": -0.1,
+        "USD": -0.1
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.001,
+          "2Y": 0.002,
+          "3Y": 0.002,
+          "5Y": 0.003,
+          "10Y": 0.002
+        },
+        "USD": {
+          "1Y": 0.002,
+          "2Y": 0.002,
+          "3Y": 0.003,
+          "5Y": 0.003,
+          "10Y": 0.002
+        }
+      }
+    }
+  },
+  {
+    "name": "2013 Taper Tantrum",
+    "period": "May – Sep 2013",
+    "description": "Bernanke hinted at tapering QE. US long-term rates spiked, EM currencies and equities fell, USD strengthened.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.002,
+          "2Y": 0.005,
+          "5Y": 0.008,
+          "10Y": 0.01,
+          "30Y": 0.008
+        },
+        "USD": {
+          "1Y": 0.003,
+          "2Y": 0.008,
+          "5Y": 0.012,
+          "10Y": 0.013,
+          "30Y": 0.01
+        }
+      },
+      "fx": { "EURUSD": -0.04 },
+      "equity": {
+        "EUR": -0.08,
+        "USD": -0.05
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.002,
+          "2Y": 0.003,
+          "3Y": 0.003,
+          "5Y": 0.004,
+          "10Y": 0.003
+        },
+        "USD": {
+          "1Y": 0.002,
+          "2Y": 0.003,
+          "3Y": 0.004,
+          "5Y": 0.004,
+          "10Y": 0.003
+        }
+      }
+    }
+  },
+  {
+    "name": "2016 Brexit Referendum",
+    "period": "Jun 2016",
+    "description": "The UK voted to leave the EU. GBP collapsed, EUR weakened, European equities fell, and rates dropped as markets priced slower growth.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.003,
+          "2Y": -0.005,
+          "5Y": -0.008,
+          "10Y": -0.01,
+          "30Y": -0.008
+        },
+        "USD": {
+          "1Y": -0.005,
+          "2Y": -0.008,
+          "5Y": -0.01,
+          "10Y": -0.012,
+          "30Y": -0.01
+        }
+      },
+      "fx": { "EURUSD": -0.04 },
+      "equity": {
+        "EUR": -0.12,
+        "USD": -0.05
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.004,
+          "2Y": 0.006,
+          "3Y": 0.007,
+          "5Y": 0.008,
+          "10Y": 0.006
+        },
+        "USD": {
+          "1Y": 0.001,
+          "2Y": 0.002,
+          "3Y": 0.002,
+          "5Y": 0.002,
+          "10Y": 0.002
+        }
+      }
+    }
+  },
+  {
+    "name": "2022-2023 Global Rate Hiking Cycle",
+    "period": "2022 – 2023",
+    "description": "Post-COVID inflation surge led to synchronised global rate hikes by the Fed, ECB, BoE. Bond markets had historic losses, equities de-rated.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.035,
+          "2Y": 0.03,
+          "5Y": 0.025,
+          "10Y": 0.02,
+          "30Y": 0.015
+        },
+        "USD": {
+          "1Y": 0.045,
+          "2Y": 0.04,
+          "5Y": 0.03,
+          "10Y": 0.022,
+          "30Y": 0.015
+        }
+      },
+      "fx": { "EURUSD": -0.12 },
+      "equity": {
+        "EUR": -0.18,
+        "USD": -0.2
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.005,
+          "2Y": 0.007,
+          "3Y": 0.008,
+          "5Y": 0.009,
+          "10Y": 0.008
+        },
+        "USD": {
+          "1Y": 0.004,
+          "2Y": 0.005,
+          "3Y": 0.006,
+          "5Y": 0.007,
+          "10Y": 0.006
+        }
+      }
+    }
+  },
+  {
+    "name": "1970s-style Stagflation",
+    "period": "1973 – 1980 (composite)",
+    "description": "Oil-price shocks combined with wage-price spirals produced persistently high inflation and economic stagnation. Rates rose dramatically, equities underperformed in real terms.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.03,
+          "2Y": 0.03,
+          "5Y": 0.025,
+          "10Y": 0.02,
+          "30Y": 0.015
+        },
+        "USD": { "1Y": 0.04, "2Y": 0.04, "5Y": 0.035, "10Y": 0.03, "30Y": 0.02 }
+      },
+      "fx": { "EURUSD": -0.08 },
+      "equity": {
+        "EUR": -0.2,
+        "USD": -0.15
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.006,
+          "2Y": 0.008,
+          "3Y": 0.01,
+          "5Y": 0.012,
+          "10Y": 0.01
+        },
+        "USD": {
+          "1Y": 0.008,
+          "2Y": 0.01,
+          "3Y": 0.012,
+          "5Y": 0.014,
+          "10Y": 0.012
+        }
+      }
+    }
+  },
+  {
+    "name": "Deflationary Recession (Japan-style)",
+    "period": "Composite (1990s–2010s Japan)",
+    "description": "Protracted deflation, zero-bound rates, equity malaise. If applied to EUR/USD: massive rate cuts, equities drift lower, EUR weakens as ECB goes ultra-loose.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.02,
+          "2Y": -0.02,
+          "5Y": -0.018,
+          "10Y": -0.015,
+          "30Y": -0.01
+        },
+        "USD": {
+          "1Y": -0.015,
+          "2Y": -0.015,
+          "5Y": -0.012,
+          "10Y": -0.01,
+          "30Y": -0.005
+        }
+      },
+      "fx": { "EURUSD": -0.1 },
+      "equity": {
+        "EUR": -0.25,
+        "USD": -0.1
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.005,
+          "2Y": 0.007,
+          "3Y": 0.008,
+          "5Y": 0.009,
+          "10Y": 0.008
+        },
+        "USD": {
+          "1Y": 0.003,
+          "2Y": 0.004,
+          "3Y": 0.005,
+          "5Y": 0.005,
+          "10Y": 0.004
+        }
+      }
+    }
+  },
+  {
+    "name": "Eurozone Break-up (Tail Risk)",
+    "period": "Hypothetical",
+    "description": "A large Eurozone member exits the single currency. Extreme EUR weakness, European equities collapse, EUR rates spike on redenomination risk, USD rates fall on safe-haven flows.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.03,
+          "2Y": 0.035,
+          "5Y": 0.03,
+          "10Y": 0.025,
+          "30Y": 0.02
+        },
+        "USD": {
+          "1Y": -0.015,
+          "2Y": -0.02,
+          "5Y": -0.025,
+          "10Y": -0.02,
+          "30Y": -0.015
+        }
+      },
+      "fx": { "EURUSD": -0.25 },
+      "equity": {
+        "EUR": -0.5,
+        "USD": -0.2
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.025,
+          "2Y": 0.035,
+          "3Y": 0.04,
+          "5Y": 0.045,
+          "10Y": 0.04
+        },
+        "USD": {
+          "1Y": 0.006,
+          "2Y": 0.008,
+          "3Y": 0.01,
+          "5Y": 0.012,
+          "10Y": 0.01
+        },
+        "Sovereign": {
+          "1Y": 0.05,
+          "2Y": 0.07,
+          "3Y": 0.08,
+          "5Y": 0.09,
+          "10Y": 0.08
+        }
+      }
+    }
+  },
+  {
+    "name": "US-China Trade War Escalation",
+    "period": "2018 – 2019",
+    "description": "Escalating tariffs between US and China caused global growth fears, equity sell-offs, and a flight to bonds.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.003,
+          "2Y": -0.005,
+          "5Y": -0.008,
+          "10Y": -0.01,
+          "30Y": -0.008
+        },
+        "USD": {
+          "1Y": -0.005,
+          "2Y": -0.008,
+          "5Y": -0.012,
+          "10Y": -0.012,
+          "30Y": -0.008
+        }
+      },
+      "fx": { "EURUSD": -0.03 },
+      "equity": {
+        "EUR": -0.12,
+        "USD": -0.1
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.002,
+          "2Y": 0.003,
+          "3Y": 0.004,
+          "5Y": 0.005,
+          "10Y": 0.004
+        },
+        "USD": {
+          "1Y": 0.003,
+          "2Y": 0.004,
+          "3Y": 0.005,
+          "5Y": 0.006,
+          "10Y": 0.005
+        }
+      }
+    }
+  },
+  {
+    "name": "Sudden Inflation Spike",
+    "period": "Hypothetical / 2021-style",
+    "description": "Unexpected jump in inflation forces central banks to tighten much faster than expected. Front-end rates spike, curves flatten, equities de-rate.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": 0.02,
+          "2Y": 0.018,
+          "5Y": 0.012,
+          "10Y": 0.008,
+          "30Y": 0.005
+        },
+        "USD": {
+          "1Y": 0.025,
+          "2Y": 0.022,
+          "5Y": 0.015,
+          "10Y": 0.01,
+          "30Y": 0.005
+        }
+      },
+      "fx": { "EURUSD": -0.05 },
+      "equity": {
+        "EUR": -0.15,
+        "USD": -0.12
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.004,
+          "2Y": 0.005,
+          "3Y": 0.006,
+          "5Y": 0.007,
+          "10Y": 0.006
+        },
+        "USD": {
+          "1Y": 0.003,
+          "2Y": 0.004,
+          "3Y": 0.005,
+          "5Y": 0.006,
+          "10Y": 0.005
+        }
+      }
+    }
+  }
+]

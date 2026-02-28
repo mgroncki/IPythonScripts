@@ -1,3 +1,8 @@
 .ipynb_checkpoints
 ipynb_checkpoints
 *.png
+*/.env
+.env
+EconomicStressAgentORE/oredata/Output
+EconomicStressAgentORE/oredata/ore_agent.xml
+EconomicStressAgentORE/oredata/Input/agent_stress.xml

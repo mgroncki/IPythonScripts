@@ -1,0 +1,4 @@
+type,name,currency,sector
+equity,RIC:.SPX,USD,Index
+equity,RIC:.STOXX50,EUR,Index
+credit,Underlying1,USD,SeniorUnsecured
