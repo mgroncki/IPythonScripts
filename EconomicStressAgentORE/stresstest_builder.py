@@ -101,6 +101,13 @@ def _prettify(element: ET.Element) -> str:
     return "\n".join(line for line in xml.splitlines() if line.strip())
 
 
+def _add_param(parent: ET.Element, name: str, value: str) -> ET.Element:
+    """Add a ``<Parameter name="...">value</Parameter>`` child element."""
+    p = ET.SubElement(parent, "Parameter", name=name)
+    p.text = value
+    return p
+
+
 # ── Main builder ──────────────────────────────────────────────────────────────
 
 def _resolve_rate_shifts(
@@ -263,10 +270,16 @@ def build_ore_config(
     base_ore_xml: Path | None = None,
     output_ore_xml: Path | None = None,
     stress_config_file: str = "agent_stress.xml",
+    market: MarketStructure | None = None,
 ) -> Path:
     """
     Write a minimal ore_agent.xml that activates only the stress analytic and
     points to the agent-generated stress test configuration.
+
+    If *market* is provided, ``simulation_agent.xml`` and
+    ``sensitivity_agent.xml`` are generated from the market structure and
+    the stress analytic is pointed at them.  This removes the dependency on
+    hand-maintained simulation.xml / sensitivity.xml files.
 
     Parameters
     ----------
@@ -275,11 +288,16 @@ def build_ore_config(
     output_ore_xml      : where to write the agent ore config
                           (defaults to config.AGENT_ORE_XML)
     stress_config_file  : filename (relative to Input/) of the stress XML
+    market              : MarketStructure from todaysmarket_analyzer.parse();
+                          when provided, agent simulation & sensitivity XMLs
+                          are auto-generated
 
     Returns
     -------
     Path to the written file.
     """
+    from todaysmarket_analyzer import generate_simulation_xml, generate_sensitivity_xml
+
     if base_ore_xml is None:
         base_ore_xml = config.ORE_WORKSPACE / "ore.xml"
     if output_ore_xml is None:
@@ -287,6 +305,17 @@ def build_ore_config(
 
     base_ore_xml = Path(base_ore_xml)
     output_ore_xml = Path(output_ore_xml)
+
+    # ── Generate simulation & sensitivity XMLs if market is available ──
+    sim_file = "simulation.xml"
+    sensi_file = "sensitivity.xml"
+
+    if market is not None:
+        input_dir = output_ore_xml.parent / "Input"
+        sim_path = generate_simulation_xml(market, input_dir / "simulation_agent.xml")
+        sensi_path = generate_sensitivity_xml(market, input_dir / "sensitivity_agent.xml")
+        sim_file = sim_path.name
+        sensi_file = sensi_path.name
 
     tree = ET.parse(base_ore_xml)
     root = tree.getroot()
@@ -300,19 +329,38 @@ def build_ore_config(
 
     # Disable every analytic except stress; update stress config file
     analytics = root.find("Analytics")
-    if analytics is not None:
-        for analytic in analytics.findall("Analytic"):
-            atype = analytic.get("type", "")
-            if atype == "stress":
-                for param in analytic.findall("Parameter"):
-                    if param.get("name") == "stressConfigFile":
-                        param.text = stress_config_file
-                    if param.get("name") == "active":
-                        param.text = "Y"
-            else:
-                for param in analytic.findall("Parameter"):
-                    if param.get("name") == "active":
-                        param.text = "N"
+    if analytics is None:
+        analytics = ET.SubElement(root, "Analytics")
+
+    has_stress = False
+    for analytic in analytics.findall("Analytic"):
+        atype = analytic.get("type", "")
+        if atype == "stress":
+            has_stress = True
+            for param in analytic.findall("Parameter"):
+                if param.get("name") == "stressConfigFile":
+                    param.text = stress_config_file
+                if param.get("name") == "active":
+                    param.text = "Y"
+                if param.get("name") == "marketConfigFile":
+                    param.text = sim_file
+                if param.get("name") == "sensitivityConfigFile":
+                    param.text = sensi_file
+        else:
+            for param in analytic.findall("Parameter"):
+                if param.get("name") == "active":
+                    param.text = "N"
+
+    # If no stress analytic exists in the source ore.xml, add one
+    if not has_stress:
+        stress_el = ET.SubElement(analytics, "Analytic", type="stress")
+        _add_param(stress_el, "active", "Y")
+        _add_param(stress_el, "marketConfigFile", sim_file)
+        _add_param(stress_el, "stressConfigFile", stress_config_file)
+        _add_param(stress_el, "sensitivityConfigFile", sensi_file)
+        _add_param(stress_el, "pricingEnginesFile", "pricingengine.xml")
+        _add_param(stress_el, "scenarioOutputFile", "stresstest.csv")
+        _add_param(stress_el, "outputThreshold", "0.000001")
 
     xml_str = _prettify(root)
     lines = xml_str.splitlines()

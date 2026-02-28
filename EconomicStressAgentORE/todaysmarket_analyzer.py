@@ -399,6 +399,120 @@ def generate_simulation_xml(
     return output_path
 
 
+# ── Sensitivity XML generation ────────────────────────────────────────────────
+
+def generate_sensitivity_xml(
+    market: MarketStructure,
+    output_path: Path | None = None,
+) -> Path:
+    """
+    Generate a minimal sensitivity.xml from the discovered MarketStructure.
+
+    This produces a zero-shift sensitivity config (ShiftSize = 0.0001) that
+    covers all market entities required by the stress test analytic.
+    No ParConversion blocks are emitted — this is a simplified "zero" config
+    sufficient for the stress test engine to resolve all risk factors.
+
+    Parameters
+    ----------
+    market      : MarketStructure from parse()
+    output_path : where to write; defaults to
+                  config.ORE_INPUT_DIR / "sensitivity_agent.xml"
+    """
+    if output_path is None:
+        output_path = config.ORE_INPUT_DIR / "sensitivity_agent.xml"
+    output_path = Path(output_path)
+
+    rate_tenors = ", ".join(config.STANDARD_RATE_TENORS)
+    credit_tenors = ", ".join(config.STANDARD_CREDIT_TENORS)
+    inflation_tenors = ", ".join(config.STANDARD_INFLATION_TENORS)
+
+    root = ET.Element("SensitivityAnalysis")
+
+    # ── Discount curves ───────────────────────────────────────────────
+    dc_el = ET.SubElement(root, "DiscountCurves")
+    for dc in market.discount_curves:
+        curve = ET.SubElement(dc_el, "DiscountCurve", ccy=dc.currency)
+        ET.SubElement(curve, "ShiftType").text = "Absolute"
+        ET.SubElement(curve, "ShiftSize").text = "0.0001"
+        ET.SubElement(curve, "ShiftScheme").text = "Forward"
+        ET.SubElement(curve, "ShiftTenors").text = rate_tenors
+
+    # ── Index curves ──────────────────────────────────────────────────
+    ic_el = ET.SubElement(root, "IndexCurves")
+    for idx in market.index_curves:
+        curve = ET.SubElement(ic_el, "IndexCurve", index=idx.name)
+        ET.SubElement(curve, "ShiftType").text = "Absolute"
+        ET.SubElement(curve, "ShiftSize").text = "0.0001"
+        ET.SubElement(curve, "ShiftScheme").text = "Forward"
+        ET.SubElement(curve, "ShiftTenors").text = rate_tenors
+
+    # ── Yield curves (empty) ──────────────────────────────────────────
+    ET.SubElement(root, "YieldCurves")
+
+    # ── FX spots ──────────────────────────────────────────────────────
+    fx_el = ET.SubElement(root, "FxSpots")
+    for pair in market.fx_pairs:
+        foreign = pair[:3]
+        domestic = pair[3:]
+        sim_pair = domestic + foreign  # ORE convention
+        spot = ET.SubElement(fx_el, "FxSpot", ccypair=sim_pair)
+        ET.SubElement(spot, "ShiftType").text = "Relative"
+        ET.SubElement(spot, "ShiftSize").text = "0.01"
+
+    # ── Credit curves ─────────────────────────────────────────────────
+    if market.default_curves:
+        cc_el = ET.SubElement(root, "CreditCurves")
+        for dc in market.default_curves:
+            curve = ET.SubElement(cc_el, "CreditCurve", name=dc.name)
+            ET.SubElement(curve, "Currency").text = dc.currency
+            ET.SubElement(curve, "ShiftType").text = "Absolute"
+            ET.SubElement(curve, "ShiftSize").text = "0.0001"
+            ET.SubElement(curve, "ShiftScheme").text = "Forward"
+            ET.SubElement(curve, "ShiftTenors").text = credit_tenors
+
+    # ── CapFloor volatilities ─────────────────────────────────────────
+    if market.capfloor_vols:
+        cfv_el = ET.SubElement(root, "CapFloorVolatilities")
+        for cv in market.capfloor_vols:
+            vol = ET.SubElement(cfv_el, "CapFloorVolatility", key=cv.name)
+            ET.SubElement(vol, "ShiftType").text = "Absolute"
+            ET.SubElement(vol, "ShiftSize").text = "0.0001"
+            ET.SubElement(vol, "ShiftExpiries").text = (
+                "1Y, 2Y, 3Y, 5Y, 7Y, 10Y, 15Y, 20Y"
+            )
+            ET.SubElement(vol, "ShiftStrikes").text = (
+                "-0.01, 0, 0.01, 0.02, 0.03, 0.04, 0.05"
+            )
+            ET.SubElement(vol, "Index").text = cv.name
+
+    # ── Zero inflation index curves ───────────────────────────────────
+    if market.inflation_indices:
+        zi_el = ET.SubElement(root, "ZeroInflationIndexCurves")
+        for zi in market.inflation_indices:
+            curve = ET.SubElement(zi_el, "ZeroInflationIndexCurve", index=zi.name)
+            ET.SubElement(curve, "ShiftType").text = "Absolute"
+            ET.SubElement(curve, "ShiftSize").text = "0.0001"
+            ET.SubElement(curve, "ShiftTenors").text = inflation_tenors
+
+    # ── Equity spots ──────────────────────────────────────────────────
+    if market.equity_curves:
+        eq_el = ET.SubElement(root, "EquitySpots")
+        for eq in market.equity_curves:
+            spot = ET.SubElement(eq_el, "EquitySpot", equity=eq.name)
+            ET.SubElement(spot, "ShiftType").text = "Relative"
+            ET.SubElement(spot, "ShiftSize").text = "0.01"
+            ET.SubElement(spot, "ShiftScheme").text = "Forward"
+
+    # ── Global flags ──────────────────────────────────────────────────
+    ET.SubElement(root, "ComputeGamma").text = "false"
+    ET.SubElement(root, "UseSpreadedTermStructures").text = "true"
+
+    xml_str = _prettify(root)
+    output_path.write_text(xml_str, encoding="utf-8")
+    return output_path
+
+
 # ── Pretty-print MarketStructure ──────────────────────────────────────────────
 
 def format_market_structure(ms: MarketStructure) -> str:

@@ -69,6 +69,7 @@ ore_workspace = config.ORE_WORKSPACE
 ore_agent_xml = stresstest_builder.build_ore_config(
     base_ore_xml=ore_workspace / "ore.xml",
     stress_config_file="agent_stress.xml",
+    market=market,
 )
 print(f"\nORE agent config written to: {ore_agent_xml}")
 

@@ -93,6 +93,8 @@ auditable, deterministic code.
   historical extremes).
 - **Toy portfolio** — the included ORE workspace has only a handful of
   trades;
+- **Construction of simulation/stresstest/sensitivity config** is incomplete and can handle
+  only a few risk factors (no volatilities, no commodity risk factors) and allow only a small range or products.
 
 ## Setup
 

@@ -101,6 +101,7 @@ def run(
         base_ore_xml=ore_workspace / "ore.xml",
         output_ore_xml=ore_agent_xml,
         stress_config_file="agent_stress.xml",
+        market=market,
     )
     print(OK + f"Written: {ore_agent_xml}\n")
 
