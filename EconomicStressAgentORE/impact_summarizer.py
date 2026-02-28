@@ -69,25 +69,48 @@ def _compute_summary(df: pd.DataFrame) -> dict[str, Any]:
 # ── Markdown table ────────────────────────────────────────────────────────────
 
 def _format_table(summary: dict[str, Any]) -> str:
-    """Build a Markdown results table."""
-    lines = [
-        "| Trade | Base NPV | Stressed NPV | P&L Impact |",
-        "|-------|----------|--------------|------------|",
+    """Build a nicely aligned plain-text table with box-drawing characters."""
+    # Determine column widths dynamically
+    trade_ids = [str(r["TradeId"]) for r in summary["trades"]] + ["TOTAL"]
+    base_vals = [f"{r['Base NPV']:,.0f}" for r in summary["trades"]] + [
+        f"{summary['total_base_npv']:,.0f}"
     ]
-    for row in summary["trades"]:
-        pnl_str = f"{row['PnL']:+,.0f}"
-        lines.append(
-            f"| {row['TradeId']} "
-            f"| {row['Base NPV']:,.0f} "
-            f"| {row['Scenario NPV']:,.0f} "
-            f"| {pnl_str} |"
+    stress_vals = [f"{r['Scenario NPV']:,.0f}" for r in summary["trades"]] + [
+        f"{summary['total_stressed_npv']:,.0f}"
+    ]
+    pnl_vals = [f"{r['PnL']:+,.0f}" for r in summary["trades"]] + [
+        f"{summary['total_pnl']:+,.0f}"
+    ]
+
+    w_trade = max(len("Trade"), max(len(t) for t in trade_ids)) + 2
+    w_base = max(len("Base NPV"), max(len(v) for v in base_vals)) + 2
+    w_stress = max(len("Stressed NPV"), max(len(v) for v in stress_vals)) + 2
+    w_pnl = max(len("P&L Impact"), max(len(v) for v in pnl_vals)) + 2
+
+    def hline(left: str, mid: str, right: str, fill: str = "─") -> str:
+        return f"{left}{fill * w_trade}{mid}{fill * w_base}{mid}{fill * w_stress}{mid}{fill * w_pnl}{right}"
+
+    def row(c1: str, c2: str, c3: str, c4: str, bold: bool = False) -> str:
+        s = (
+            f"│ {c1:<{w_trade - 2}} "
+            f"│ {c2:>{w_base - 2}} "
+            f"│ {c3:>{w_stress - 2}} "
+            f"│ {c4:>{w_pnl - 2}} │"
         )
-    lines.append(
-        f"| **TOTAL** "
-        f"| **{summary['total_base_npv']:,.0f}** "
-        f"| **{summary['total_stressed_npv']:,.0f}** "
-        f"| **{summary['total_pnl']:+,.0f}** |"
-    )
+        return s
+
+    lines: list[str] = []
+    lines.append(hline("┌", "┬", "┐"))
+    lines.append(row("Trade", "Base NPV", "Stressed NPV", "P&L Impact"))
+    lines.append(hline("├", "┼", "┤"))
+
+    for tid, bv, sv, pv in zip(trade_ids[:-1], base_vals[:-1], stress_vals[:-1], pnl_vals[:-1]):
+        lines.append(row(tid, bv, sv, pv))
+
+    lines.append(hline("├", "┼", "┤", "═"))
+    lines.append(row("TOTAL", base_vals[-1], stress_vals[-1], pnl_vals[-1]))
+    lines.append(hline("└", "┴", "┘"))
+
     return "\n".join(lines)
 
 
@@ -167,7 +190,7 @@ which trades were most affected, and what the overall risk interpretation is.
             {"role": "system", "content": _NARRATIVE_SYSTEM},
             {"role": "user", "content": prompt},
         ],
-        temperature=0.4,
+        temperature=config.OPENAI_TEMPERATURE,
     )
     return resp.choices[0].message.content or ""
 
@@ -199,22 +222,24 @@ def summarize(
     table = _format_table(summary)
     narrative = _llm_narrative(scenario_description, shifts, summary)
 
+    width = 60
     header = (
-        "═" * 60 + "\n"
-        "  Portfolio Stress Test Impact Report\n"
-        "═" * 60
+        "═" * width + "\n"
+        + "  Portfolio Stress Test Impact Report\n"
+        + "═" * width
     )
 
     pnl_sign = "+" if summary["total_pnl"] >= 0 else ""
     pnl_label = f"TOTAL P&L: {pnl_sign}{summary['total_pnl']:,.0f} EUR"
-    direction = "GAIN" if summary["total_pnl"] >= 0 else "LOSS"
+    direction = "▲ GAIN" if summary["total_pnl"] >= 0 else "▼ LOSS"
 
     report = (
         f"{header}\n\n"
-        f"**{pnl_label}  [{direction}]**\n\n"
+        f"  {pnl_label}  [{direction}]\n\n"
         f"{table}\n\n"
-        "---\n\n"
-        "**Narrative Summary**\n\n"
+        + "─" * width + "\n"
+        "  Narrative Summary\n"
+        + "─" * width + "\n\n"
         f"{narrative}\n"
     )
     return report

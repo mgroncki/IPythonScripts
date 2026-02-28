@@ -22,7 +22,8 @@ AGENT_ORE_XML = ORE_WORKSPACE / "ore_agent.xml"
 
 # ── LLM ───────────────────────────────────────────────────────────────────────
 OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4")
+OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-5.2")
+OPENAI_TEMPERATURE: float = float(os.getenv("OPENAI_TEMPERATURE", "0.2"))
 
 # ── Sector-mapping CSV (maps equity/credit names → sectors) ───────────────────
 SECTOR_MAPPING_CSV: Path = BASE_DIR / "sector_mapping.csv"

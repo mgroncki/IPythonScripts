@@ -104,7 +104,7 @@ def analyze(
             {"role": "system", "content": _SYSTEM_PROMPT},
             {"role": "user", "content": _build_user_message(scenario_description, knowledge_base)},
         ],
-        temperature=0.2,
+        temperature=config.OPENAI_TEMPERATURE,
         response_format={"type": "json_object"},
     )
 
