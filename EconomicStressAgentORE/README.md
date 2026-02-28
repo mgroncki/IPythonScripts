@@ -148,11 +148,11 @@ The agent injects two files at runtime:
 
 ```bash
 # Basic usage
-python agent.py --scenario "A sudden European banking crisis with contagion fears"
+python agent.py --scenario "Giant monsters emerge from the ocean and destroy two major capitals in Europe and Asia simultaneously, triggering martial law, insurance system collapse, and a global flight to safety"
 
 # With all options
 python agent.py \
-  --scenario "A sudden European banking crisis with contagion fears" \
+  --scenario "python agent.py --scenario "Giant monsters emerge from the ocean and destroy two major capitals in Europe and Asia simultaneously, triggering martial law, insurance system collapse, and a global flight to safety" \
   --ore-workspace ./oredata \
   --scenario-id my_scenario \
   --output report.md \
@@ -193,33 +193,31 @@ Equity and credit names are resolved via an optional sector mapping
 ## Example output
 
 ```
-python agent.py -s "world wide AI mass lay offs for high income jobs"
-
 ╔══════════════════════════════════════════════════════════╗
 ║       Economic Scenario Stress Test Agent                ║
 ╚══════════════════════════════════════════════════════════╝
 
-Analyzing scenario: "world wide AI mass lay offs for high income jobs"
+Analyzing scenario: "Giant monsters emerge from the ocean and destroy two major capitals in Europe and Asia simultaneously, triggering martial law, insurance system collapse, and a global flight to safety"
 
   ▶ Step 1/5  Analyzing scenario with LLM …
   ✓ Scenario analysis complete
 
 Matched scenarios:
-  • 2001 Dot-com Bust (Mar 2000 – Oct 2002)
-  • 2015 China Devaluation / EM Shock (Aug – Sep 2015)
-  • 2011 US Debt-Ceiling Crisis / S&P Downgrade (Jul – Aug 2011)
+  • 2008 Global Financial Crisis (Sep 2008 – Mar 2009)
+  • 2020 COVID-19 Crash (Feb – Mar 2020)
+  • Eurozone Break-up (Tail Risk) (Hypothetical)
 
-Reasoning: A worldwide AI-driven wave of layoffs in high-income (white-collar/tech-heavy) jobs is most analogous to a tech-led equity drawdown with growth fears and policy easing (dot-com), with an added global risk-off/flight-to-quality component (2015, 2011). Severity is set to moderate-to-severe but below 2008: large equity hit (especially tech), meaningful rate declines, and moderate credit widening; USD benefits as a relative safe haven so EURUSD falls.
+Reasoning: Simultaneous destruction of major capitals with martial law and insurance-system collapse implies an extreme, sudden global risk-off/liquidity shock (GFC/COVID-like) plus acute Europe-specific tail risk and EUR dislocation (Eurozone break-up proxy). Weighted blend emphasizes severe credit stress and safe-haven bid, with EUR underperformance; scaled up to reflect catastrophic severity beyond typical historical episodes.
 
 Proposed market shifts:
-  FX EURUSD: -0.0126
-  Equity EUR: -30.8%
-  Equity USD: -25.2%
-  Equity Tech: -45.0%
-  Rates EUR: 1Y -105bp  2Y -99bp  3Y -80bp  5Y -84bp  10Y -84bp  30Y -63bp
-  Rates USD: 1Y -210bp  2Y -196bp  3Y -161bp  5Y -154bp  10Y -126bp  30Y -84bp
-  Credit EUR: 1Y +35bp  2Y +49bp  3Y +60bp  5Y +67bp  10Y +56bp
-  Credit USD: 1Y +49bp  2Y +63bp  3Y +77bp  5Y +88bp  10Y +74bp
+  FX EURUSD: -0.1875
+  Equity EUR: -63.7%
+  Equity USD: -48.0%
+  Rates EUR: 1Y -8bp  2Y -9bp  3Y -9bp  5Y -6bp  10Y -4bp  30Y -2bp
+  Rates USD: 1Y -225bp  2Y -240bp  3Y -240bp  5Y -225bp  10Y -180bp  30Y -135bp
+  Credit EUR: 1Y +270bp  2Y +375bp  3Y +435bp  5Y +495bp  10Y +465bp
+  Credit USD: 1Y +225bp  2Y +300bp  3Y +360bp  5Y +420bp  10Y +375bp
+  Credit Sovereign: 1Y +675bp  2Y +945bp  3Y +1080bp  5Y +1215bp  10Y +1080bp
 
   ▶ Step 2/5  Parsing todaysmarket.xml …
   ✓ Discovered 2 currencies, 2 discount curves, 2 equities, 1 credit names
@@ -229,6 +227,7 @@ Proposed market shifts:
   ✓ Written: /Users/matthiasgroncki/quant-dev/IPythonScripts/EconomicStressAgentORE/oredata/ore_agent.xml
 
   ▶ Step 4/5  Running ORE …
+Running ORE with config: ore_agent.xml from workspace: /Users/matthiasgroncki/quant-dev/IPythonScripts/EconomicStressAgentORE/oredata
 Loading inputs                                    OK
 Requested analytics                               STRESS
 StressTestAnalytic: Build Market                  OK
@@ -247,29 +246,29 @@ ORE done.
   Portfolio Stress Test Impact Report
 ════════════════════════════════════════════════════════════
 
-  TOTAL P&L: -6,614,962 EUR  [▼ LOSS]
+  TOTAL P&L: -20,452,247 EUR  [▼ LOSS]
 
-┌────────────────────────────┬────────────┬──────────────┬────────────┐
-│ Trade                      │   Base NPV │ Stressed NPV │ P&L Impact │
-├────────────────────────────┼────────────┼──────────────┼────────────┤
-│ EUR6MSwap                  │  5,924,804 │    4,415,089 │ -1,509,715 │
-│ EquityCFD_USD              │     76,647 │   -1,359,666 │ -1,436,313 │
-│ EquityCFD_EUR              │  1,263,244 │     -172,789 │ -1,436,033 │
-│ XccySwap                   │    268,878 │   -1,027,997 │ -1,296,875 │
-│ Cap                        │  4,988,927 │    4,045,146 │   -943,781 │
-│ ZeroCouponInflationSwapEUR │    -20,433 │      -21,311 │       -878 │
-│ CDS                        │    -64,059 │      -55,424 │     +8,635 │
-├════════════════════════════┼════════════┼══════════════┼════════════┤
-│ TOTAL                      │ 12,438,009 │    5,823,047 │ -6,614,962 │
-└────────────────────────────┴────────────┴──────────────┴────────────┘
+┌───────────────┬────────────┬──────────────┬─────────────┐
+│ Trade         │   Base NPV │ Stressed NPV │  P&L Impact │
+├───────────────┼────────────┼──────────────┼─────────────┤
+│ XccySwap      │    268,878 │  -18,241,162 │ -18,510,040 │
+│ EquityCFD_USD │     76,647 │   -3,119,320 │  -3,195,967 │
+│ EquityCFD_EUR │  1,263,244 │   -1,709,064 │  -2,972,308 │
+│ EUR6MSwap     │  5,924,804 │    5,774,330 │    -150,474 │
+│ CDS           │ -6,405,864 │   -2,029,322 │  +4,376,542 │
+├═══════════════┼════════════┼══════════════┼═════════════┤
+│ TOTAL         │  1,127,710 │  -19,324,538 │ -20,452,247 │
+└───────────────┴────────────┴──────────────┴─────────────┘
 
 ────────────────────────────────────────────────────────────
   Narrative Summary
 ────────────────────────────────────────────────────────────
 
-The “AI mass layoffs in high‑income jobs” scenario produces a severe risk‑off shock across equities and a strong rally in core rates, alongside widening credit spreads and a modest EURUSD move. Equities fall sharply (EUR equities -30.8%, USD equities -25.2%, and Tech -45.0%), while rates decline materially (EUR down 63–105bp across 1Y–30Y; USD down 84–210bp across 1Y–30Y). Credit spreads widen in both regions (EUR +35–67bp out to 10Y; USD +49–88bp out to 10Y). Under these combined shifts, portfolio NPV drops from EUR 12,438,009 to EUR 5,823,047, for a total P&L impact of -EUR 6,614,962 (about -53% of base NPV).
+Under the “global flight to safety” shock—EURUSD down 0.1875 (absolute), equities down 63.7% in EUR and 48.0% in USD, sharp USD rate rallies (down 225–240bp out to 5Y and down 180bp at 10Y), and severe spread widening (EUR credit +270bp to +495bp, USD credit +225bp to +420bp, sovereign credit +675bp to +1,215bp)—the portfolio moves from a base NPV of EUR 1,127,710 to a stressed NPV of EUR -19,324,538. This is a total P&L impact of EUR -20,452,247, indicating the portfolio is highly exposed to combined FX dislocation, equity crash risk, and cross-currency/rates basis dynamics under extreme systemic stress.
 
-Losses are concentrated in equity and rates/FX-sensitive positions. The two equity CFD positions are the largest equity-driven detractors: EquityCFD_USD loses -EUR 1,436,313 (from EUR 76,647 to -EUR 1,359,666) and EquityCFD_EUR loses -EUR 1,436,033 (from EUR 1,263,244 to -EUR 172,789), consistent with the large equity drawdowns in both currencies. The rates rally and cross-currency dynamics also contribute heavily: the EUR6MSwap loses -EUR 1,509,715 (from EUR 5,924,804 to EUR 4,415,089) and the XccySwap loses -EUR 1,296,875 (from EUR 268,878 to -EUR 1,027,997), indicating significant exposure to curve moves and/or basis/FX interactions (EURUSD shifts by -0.0126 in absolute terms). The Cap position also detracts -EUR 943,781 (from EUR 4,988,927 to EUR 4,045,146), suggesting the scenario’s large rate move and volatility/convexity effects are adverse for this structure despite the directionally lower yields.
+The loss is overwhelmingly driven by the cross-currency and equity risk factors. The XccySwap contributes EUR -18,510,040 of the total drawdown, with its valuation swinging from EUR 268,878 to EUR -18,241,162, consistent with a regime where USD funding stress and large EURUSD moves dominate outcomes. Equity risk is the next major driver: EquityCFD_USD loses EUR -3,195,967 (EUR 76,647 to EUR -3,119,320) and EquityCFD_EUR loses EUR -2,972,308 (EUR 1,263,244 to EUR -1,709,064), reflecting the -48.0% and -63.7% equity shocks compounded by the EURUSD drop for USD-denominated exposure when reported in EUR.
 
-Offsets are limited and primarily credit-related. The CDS position gains EUR 8,635 (from -EUR 64,059 to -EUR 55,424), consistent with credit spread widening improving the value of protection, but the magnitude is small relative to the equity and rates-driven losses. The ZeroCouponInflationSwapEUR is essentially flat (-EUR 878), providing negligible diversification in this shock. Overall, the risk interpretation is that the portfolio is materially exposed to a synchronized risk-off regime where equities reprice lower and rates rally sharply; credit hedging is present but insufficient in size to counteract the dominant equity and rates/cross-currency losses, leaving the portfolio vulnerable to macro shocks that combine growth fears, policy-rate cuts, and widening spreads.
+Offsetting gains come primarily from credit protection. The CDS position generates EUR +4,376,542 (from EUR -6,405,864 to EUR -2,029,322), benefiting from the very large credit and sovereign spread widening (up to +495bp in EUR credit and +1,215bp in sovereign spreads at 5Y). Rates contribute only marginally: the EUR6MSwap loses EUR -150,474 (EUR 5,924,804 to EUR 5,774,330), consistent with relatively small EUR curve shifts (single-digit bp rally across tenors) compared with the much larger moves in USD rates and credit.
+
+Overall, the stress test indicates a concentrated tail risk profile: the portfolio’s protection via CDS is meaningful but insufficient against the dominant cross-currency swap exposure and equity beta in a simultaneous FX break and equity crash. The result suggests the portfolio is effectively short extreme funding/FX dislocation (via the XccySwap) and long risk assets (via the equity CFDs), with credit hedges providing partial convexity but not enough to prevent a large negative NPV under systemic shock. The key risk interpretation is that diversification breaks down in this scenario and the portfolio’s P&L is governed by a small number of positions whose sensitivities amplify precisely when liquidity and basis risks are most stressed.
 ```

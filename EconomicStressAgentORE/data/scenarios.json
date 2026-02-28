@@ -895,5 +895,93 @@
         }
       }
     }
+  },
+  {
+    "name": "9/11 Terror Attack",
+    "period": "Sep 2001",
+    "description": "Coordinated terrorist attacks on the World Trade Center and Pentagon caused an immediate market shutdown and a sharp sell-off on reopening. The Fed cut rates 50bp within days. Flight to US Treasuries intensified, equities fell sharply, and credit spreads widened across aviation, insurance, and broader corporate sectors.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.008,
+          "2Y": -0.007,
+          "5Y": -0.005,
+          "10Y": -0.003,
+          "30Y": -0.002
+        },
+        "USD": {
+          "1Y": -0.018,
+          "2Y": -0.015,
+          "5Y": -0.01,
+          "10Y": -0.006,
+          "30Y": -0.003
+        }
+      },
+      "fx": { "EURUSD": 0.02 },
+      "equity": {
+        "EUR": -0.14,
+        "USD": -0.12
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.005,
+          "2Y": 0.007,
+          "3Y": 0.009,
+          "5Y": 0.01,
+          "10Y": 0.008
+        },
+        "USD": {
+          "1Y": 0.008,
+          "2Y": 0.011,
+          "3Y": 0.013,
+          "5Y": 0.015,
+          "10Y": 0.012
+        }
+      }
+    }
+  },
+  {
+    "name": "2011 Tōhoku Earthquake / Fukushima",
+    "period": "Mar 2011",
+    "description": "Magnitude-9.0 earthquake and subsequent tsunami devastated northeastern Japan, triggering a nuclear crisis at Fukushima Daiichi. The Nikkei fell ~20% in the first two weeks. Global risk-off sentiment pushed European and US equities lower, rates declined on growth concerns, and credit spreads widened modestly. Safe-haven flows initially strengthened the yen before G7 coordinated intervention reversed the move.",
+    "shifts": {
+      "rates": {
+        "EUR": {
+          "1Y": -0.004,
+          "2Y": -0.005,
+          "5Y": -0.006,
+          "10Y": -0.007,
+          "30Y": -0.005
+        },
+        "USD": {
+          "1Y": -0.006,
+          "2Y": -0.008,
+          "5Y": -0.009,
+          "10Y": -0.008,
+          "30Y": -0.005
+        }
+      },
+      "fx": { "EURUSD": 0.01 },
+      "equity": {
+        "EUR": -0.1,
+        "USD": -0.06
+      },
+      "credit": {
+        "EUR": {
+          "1Y": 0.003,
+          "2Y": 0.004,
+          "3Y": 0.005,
+          "5Y": 0.006,
+          "10Y": 0.005
+        },
+        "USD": {
+          "1Y": 0.003,
+          "2Y": 0.004,
+          "3Y": 0.005,
+          "5Y": 0.005,
+          "10Y": 0.004
+        }
+      }
+    }
   }
 ]

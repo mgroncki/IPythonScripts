@@ -78,7 +78,7 @@ def run(
 def _run_via_python_api(ore_xml_rel: Path, workspace: Path) -> None:
     """Execute ORE using the Python bindings (OREApp)."""
     from ORE import OREApp, Parameters  # type: ignore[import]
-
+    print(f"Running ORE with config: {ore_xml_rel} from workspace: {workspace}")
     orig_cwd = Path.cwd()
     try:
         os.chdir(workspace)
